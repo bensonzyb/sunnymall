@@ -1,0 +1,15 @@
+管理员表：admin_user
+用户表：user
+
+前端访问地址：localhost:8080/mall 
+账号密码：aaaa  aaaa
+
+
+ 可以在配置文件修改端口和项目后缀
+后端访问：前端首页最下方可进入后台。
+http://localhost:8080/mall/admin/toLogin.html
+账号密码：admin  admin
+
+
+后台登录账号密码请看数据库管理员表：admin_user
+可以注册用户或者用户表查看
