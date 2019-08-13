@@ -102,7 +102,7 @@ public class AdminProductController {
         product.setImage(imgUrl);
         int id = productService.create(product);
         if (id <= 0) {
-            request.setAttribute("message", "娣诲姞澶辫触锛�");
+            request.setAttribute("message", "添加失败!");
             request.getRequestDispatcher("toAdd.html").forward(request, response);
         } else {
             request.getRequestDispatcher("toEdit.html?id=" + id).forward(request, response);
@@ -143,14 +143,14 @@ public class AdminProductController {
             throw new Exception(e);
         }
         if (!flag) {
-            request.setAttribute("message", "鏇存柊澶辫触锛�");
+            request.setAttribute("message", "更新失败！");
         }
         response.sendRedirect("toList.html");
     }
 
     
     /**
-     * 鍥剧墖鍔犺浇   (resful鏄犲皠鑾峰彇)
+     * 图片下载展示
      * /sunnymall/admin/product/img/
      * @param filename
      * @param res
@@ -184,7 +184,7 @@ public class AdminProductController {
         Map<String,Object> map = new HashMap<String,Object>();
 		Map<String,Object> map2 = new HashMap<String,Object>();
 		map.put("code", 0);	//0琛ㄧず涓婁紶鎴愬姛
-		map.put("msg","涓婁紶鎴愬姛"); //鎻愮ず娑堟伅
+		map.put("msg","上传成功"); //鎻愮ず娑堟伅
 		map2.put("src", imgUrl);
 		map2.put("title", "");
 		map.put("data", map2);
