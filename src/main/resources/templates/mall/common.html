@@ -63,7 +63,7 @@
                 <dl class="layui-nav-child">
                     <dd th:if="${session.user != null}"><a href="/sunnymall/user/logout.do"><i class="fa fa-sign-out"></i>Log out</a></dd>
                     <dd th:if="${session.user != null}"><a href="/sunnymall/order/toList.html"><i class="fa fa-list"></i>Submitted</a></dd>
-                    <dd th:if="${session.user != null}"><a href="/sunnymall/product/toCart.html"><i class="fa fa-shopping-cart"></i>Select</a></dd>
+                    <dd th:if="${session.user != null}"><a href="/sunnymall/product/toCart.html"><i class="fa fa-shopping-cart"></i>Selected</a></dd>
                     <dd th:if="${session.user == null}"><a href="/sunnymall/user/toLogin.html"><i class="fa fa-sign-in"></i>Sign in</a></dd>
                     <dd th:if="${session.user == null}"><a href="/sunnymall/user/toRegister.html"><i class="fa fa-user-plus"></i>Register</a></dd>
                 </dl>

@@ -32,37 +32,38 @@
             <div class="layui-col-md5 layui-col-sm5 layui-col-xs12 layui-col-md-offset7">
                 <form class="layui-form" action="../order/submit.do">
                     <div class="layui-form-item">
-                        <label class="layui-form-label">收货人：</label>
+                        <label class="layui-form-label">email：</label>
                         <div class="layui-input-block">
-                            <input type="text" name="name" required="required" lay-verify="required"
-                                   placeholder="请输入收货人"
+                            <input type="text" name="email" required="required" lay-verify="required"
+                                   placeholder="Please input your email"
                                    autocomplete="off" class="layui-input"/>
                         </div>
                     </div>
 
                     <div class="layui-form-item">
-                        <label class="layui-form-label">电话：</label>
-                        <div class="layui-input-block">
-                            <input type="text" name="phone" required="required" lay-verify="required"
-                                   placeholder="请输入收货人电话"
-                                   autocomplete="off" class="layui-input"/>
-                        </div>
-                    </div>
-
-                    <div class="layui-form-item">
-                        <label class="layui-form-label">地址：</label>
+                        <label class="layui-form-label">address：</label>
                         <div class="layui-input-block">
                             <input type="text" name="addr" required="required" lay-verify="required"
-                                   placeholder="请输入收货人地址"
+                                   placeholder="Please input your address"
                                    autocomplete="off" class="layui-input"/>
                         </div>
                     </div>
+                    
+                    
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">message：</label>
+                        <div class="layui-input-block"> 
+                            <textarea name="message" id="message"  placeholder="leave a message" lay-verify="required"
+                            class="layui-textarea" rows="3"  autocomplete="off"></textarea>
+                        </div>
+                    </div>
+                    
 
                     <div class="layui-form-item">
                         <div class="layui-input-block" style="text-align: right;">
                             <span id="total" class="price1"></span>&emsp;
                             <button class="layui-btn layui-btn-lg layui-btn-radius layui-btn-danger"
-                                    lay-submit="lay-submit" lay-filter="formDemo">提交订单
+                                    lay-submit="lay-submit" lay-filter="formDemo">Notify Seller
                             </button>
                         </div>
                     </div>

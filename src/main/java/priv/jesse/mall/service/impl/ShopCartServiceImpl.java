@@ -25,6 +25,8 @@ public class ShopCartServiceImpl implements ShopCartService {
 
     @Autowired
     private ProductService productService;
+    
+    private final static String CARTQUALITY="cartQuality";
 
     /**
      * 加购物车
@@ -39,11 +41,21 @@ public class ShopCartServiceImpl implements ShopCartService {
         if (loginUser == null)
             throw new Exception("Not logged in,please log in again!");
         List<Integer> productIds = (List<Integer>) request.getSession().getAttribute(NAME_PREFIX + loginUser.getId());
+        //数量session
+        Map<Integer, Integer> mapQuantity=new HashMap<Integer,Integer>();
+        List<Map<Integer, Integer>> quantitys = (List<Map<Integer, Integer>>) request.getSession().getAttribute(NAME_PREFIX + loginUser.getId()+CARTQUALITY);
+
         if (productIds == null) {
             productIds = new ArrayList<>();
             request.getSession().setAttribute(NAME_PREFIX + loginUser.getId(), productIds);
+            
+            quantitys= new ArrayList<Map<Integer, Integer>>();
+            request.getSession().setAttribute(NAME_PREFIX + loginUser.getId()+CARTQUALITY, quantitys);
         }
         productIds.add(productId);
+        //添加数量
+        mapQuantity.put(productId, quantity);
+        quantitys.add(mapQuantity);
     }
 
     /**
@@ -55,10 +67,10 @@ public class ShopCartServiceImpl implements ShopCartService {
      * @param request
      */
     @Override
-    public void remove(int productId, HttpServletRequest request) throws Exception {
+    public void remove(int productId, int quantity,HttpServletRequest request) throws Exception {
         User loginUser = (User) request.getSession().getAttribute("user");
         if (loginUser == null)
-            throw new Exception("未登录！请重新登录");
+            throw new Exception("Not logged in,please log in again!");
         List<Integer> productIds = (List<Integer>) request.getSession().getAttribute(NAME_PREFIX + loginUser.getId());
         Iterator<Integer> iterator = productIds.iterator();
         while (iterator.hasNext()) {
@@ -66,6 +78,16 @@ public class ShopCartServiceImpl implements ShopCartService {
                 iterator.remove();
             }
         }
+        
+        List<Map<Integer, Integer>> quantitys = (List<Map<Integer, Integer>>) request.getSession().getAttribute(NAME_PREFIX + loginUser.getId()+CARTQUALITY);
+        Iterator<Map<Integer, Integer>> iterator2 = quantitys.iterator();
+        while (iterator.hasNext()) {
+            if (productId == iterator.next()) {
+                iterator.remove();
+            }
+        }
+        
+        
     }
 
     /**
@@ -80,27 +102,40 @@ public class ShopCartServiceImpl implements ShopCartService {
     public List<OrderItem> listCart(HttpServletRequest request) throws Exception {
         User loginUser = (User) request.getSession().getAttribute("user");
         if (loginUser == null)
-            throw new Exception("未登录！请重新登录");
+            throw new Exception("Not logged in,please log in again!");
         List<Integer> productIds = (List<Integer>) request.getSession().getAttribute(NAME_PREFIX + loginUser.getId());
         // key: productId value:OrderItem
         Map<Integer, OrderItem> productMap = new HashMap<>();
         if (productIds == null){
             return new ArrayList<>();
         }
+        List<Map<Integer, Integer>> quantitys = (List<Map<Integer, Integer>>) request.getSession().getAttribute(NAME_PREFIX + loginUser.getId()+CARTQUALITY);
         // 遍历List中的商品id，每个商品Id对应一个OrderItem
         for (Integer productId : productIds) {
+        	int totalQuantity=0;
+        	for(Map<Integer, Integer> map:quantitys) {
+        		for(Map.Entry<Integer, Integer> entry : map.entrySet()){
+        			Integer mapKey = entry.getKey();
+        			Integer mapValue = entry.getValue();
+        			if(null!=productId && null!=mapKey && productId==mapKey) {
+        				totalQuantity=totalQuantity+mapValue;
+            		}
+            	}
+        	}
             if (productMap.get(productId) == null) {
                 Product product = productService.findById(productId);
                 OrderItem orderItem = new OrderItem();
                 orderItem.setProduct(product);
                 orderItem.setProductId(productId);
-                orderItem.setCount(1);
+                //orderItem.setCount(1);
+                orderItem.setCount(totalQuantity);
                 orderItem.setSubTotal(product.getShopPrice());
                 productMap.put(productId, orderItem);
             } else {
                 OrderItem orderItem = productMap.get(productId);
                 int count = orderItem.getCount();
-                orderItem.setCount(++count);
+                //orderItem.setCount(++count);
+                orderItem.setCount(totalQuantity);
                 Double subTotal = orderItem.getSubTotal();
                 orderItem.setSubTotal(orderItem.getSubTotal()+subTotal);
                 productMap.put(productId, orderItem);

@@ -69,9 +69,11 @@ public class OrderController {
     public void submit(String name,
                        String phone,
                        String addr,
+                       String email,
+                       String message,
                        HttpServletRequest request,
                        HttpServletResponse response) throws Exception {
-        orderService.submit(name, phone, addr, request, response);
+        orderService.submit(name, phone, addr, email,  message, request, response);
     }
 
     /**

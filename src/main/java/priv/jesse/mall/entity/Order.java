@@ -44,15 +44,27 @@ public class Order implements Serializable {
      */
     @Column
     private String addr;
+    
     /**
      * 用户Id
      */
     @Column
     private Integer userId;
+    
+    /**
+     * 电子邮件
+     */
+    @Column
+    private String email;
+    /**
+     * 收货地址
+     */
+    @Column
+    private String message;
 
     private static final long serialVersionUID = 1L;
 
-    public Order(Integer id, Double total, Integer state, Date orderTime, String name, String phone, String addr, Integer userId) {
+    public Order(Integer id, Double total, Integer state, Date orderTime, String name, String phone, String addr, Integer userId,String email,String message) {
         this.id = id;
         this.total = total;
         this.state = state;
@@ -61,6 +73,8 @@ public class Order implements Serializable {
         this.phone = phone;
         this.addr = addr;
         this.userId = userId;
+        this.email = email;
+        this.message = message;
     }
 
     public Order() {
@@ -182,8 +196,27 @@ public class Order implements Serializable {
         sb.append(", phone=").append(phone);
         sb.append(", addr=").append(addr);
         sb.append(", userId=").append(userId);
+        sb.append(", email=").append(email);
+        sb.append(", message=").append(message);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
     }
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+    
 }

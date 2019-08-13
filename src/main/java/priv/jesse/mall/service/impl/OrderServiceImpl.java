@@ -135,10 +135,10 @@ public class OrderServiceImpl implements OrderService {
      */
     @Override
     @Transactional
-    public void submit(String name, String phone, String addr, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public void submit(String name, String phone, String addr,String email, String message, HttpServletRequest request, HttpServletResponse response) throws Exception {
         Object user = request.getSession().getAttribute("user");
         if (user == null)
-            throw new LoginException("请登录！");
+            throw new LoginException("Not logged in,please log in again!");
         User loginUser = (User) user;
         Order order = new Order();
         order.setName(name);
@@ -147,6 +147,8 @@ public class OrderServiceImpl implements OrderService {
         order.setOrderTime(new Date());
         order.setUserId(loginUser.getId());
         order.setState(STATE_NO_PAY);
+        order.setEmail(email);
+        order.setMessage(message);
         List<OrderItem> orderItems = shopCartService.listCart(request);
         Double total = 0.0;
         order.setTotal(total);

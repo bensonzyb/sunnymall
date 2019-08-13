@@ -165,8 +165,8 @@ public class ProductController {
      */
     @ResponseBody
     @RequestMapping("/delCart.do")
-    public ResultBean<Boolean> delToCart(int productId, HttpServletRequest request) throws Exception {
-        shopCartService.remove(productId, request);
+    public ResultBean<Boolean> delToCart(int productId,int quantity, HttpServletRequest request) throws Exception {
+        shopCartService.remove(productId, quantity, request);
         return new ResultBean<>(true);
     }
 

@@ -23,7 +23,7 @@ public interface ShopCartService {
      * @param productId
      * @param request
      */
-    void remove(int productId, HttpServletRequest request) throws Exception;
+    void remove(int productId, int quantity,HttpServletRequest request) throws Exception;
 
     /**
      * 查看购物车

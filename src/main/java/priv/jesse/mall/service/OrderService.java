@@ -107,7 +107,7 @@ public interface OrderService {
      * @param request
      * @param response
      */
-    void submit(String name, String phone, String addr, HttpServletRequest request, HttpServletResponse response) throws Exception;
+    void submit(String name, String phone, String addr,String email, String message, HttpServletRequest request, HttpServletResponse response) throws Exception;
 
     /**
      * 确认收货
