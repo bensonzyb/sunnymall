@@ -10,12 +10,12 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
- * 绋嬪簭鍚姩鍏ュ彛
+ * 程序启动入口
  *
- * @ServletComponentScan 璁剧疆鍚姩鏃秙pring鑳藉鎵弿鍒版垜浠嚜宸辩紪鍐欑殑servlet鍜宖ilter, 鐢ㄤ簬Druid鐩戞帶
- * @MapperScan("com.imlaidian.springbootdemo.dao") 鎵弿mybatis Mapper鎺ュ彛
- * @EnableScheduling 鍚敤瀹氭椂浠诲姟
- * @EnableTransactionManagement 寮�鍚簨鍔�
+ * @ServletComponentScan 设置启动时spring能够扫描到我们自己编写的servlet和filter, 用于Druid监控
+ * @MapperScan("com.imlaidian.springbootdemo.dao") 扫描mybatis Mapper接口
+ * @EnableScheduling 启用定时任务
+ * @EnableTransactionManagement 开启事务
  *
  * @author hfb
  * @date 2019/2/18 11:13
