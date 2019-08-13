@@ -30,7 +30,12 @@ public class MallApplication  extends SpringBootServletInitializer  {
 	}
 	
 	
-	//用于构建war文件并进行部署
+	/**
+	 * @author zyb
+	 * 
+	 * 用于构建war文件并进行部署
+	 * 必须用到 zyb
+	 */
 	@Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
         return builder.sources(MallApplication.class);

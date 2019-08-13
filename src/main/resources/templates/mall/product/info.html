@@ -94,7 +94,7 @@
                         <input type="text" id="quantity" value="1"/>
                     </div>
                     <hr class="layui-bg-red" /> 
-                    <p ><button onclick="addCart()" class="layui-btn layui-btn-lg layui-btn-radius layui-btn-danger">加入购物车</button></p>
+                    <p ><button onclick="addCart()" class="layui-btn layui-btn-lg layui-btn-radius layui-btn-danger">SELECT</button></p>
                 </div>
             </div>
         </div>
@@ -114,13 +114,20 @@
         function addCart() {
             var productId = $("#productId").val();
             if(!productId){
-                layer.msg("错误！");
+                layer.msg("error！");
                 return;
             }
-
-            $.get("addCart.do?productId="+productId,function (data) {
+            
+            var quantity = $("#quantity").val();
+            var ex = /^\d+$/;
+			if (!ex.test(quantity)) {
+			 layer.msg("Quantity input must be a positive integer！");
+                return;
+			}
+            
+            $.get("addCart.do?productId="+productId+"&quantity="+quantity,function (data) {
                 if (data.state==0){
-                    layer.msg("添加购物车成功！");
+                    layer.msg("Select success!");
                 }else {
                     layer.msg(data.message);
                 }

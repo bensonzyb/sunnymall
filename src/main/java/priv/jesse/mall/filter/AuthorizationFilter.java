@@ -18,7 +18,7 @@ import java.io.OutputStream;
 import java.util.HashMap;
 
 /**
- * 鏉冮檺鎷︽埅鍣�
+ * 权限拦截器
  *
  * @author hfb
  * @date 2017/9/18
@@ -39,7 +39,7 @@ public class AuthorizationFilter implements Filter {
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) res;
-        // 鏀寔璺ㄥ煙璁块棶
+        // 支持跨域访问
         response.setHeader("Access-Control-Allow-Origin", "*");
         response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
         response.setHeader("Access-Control-Max-Age", "3600");
@@ -49,13 +49,13 @@ public class AuthorizationFilter implements Filter {
             responseJSON(response, new HashMap<>());
             return;
         }
-        //闄や簡鎷︽埅login.html 鍏朵粬html閮芥嫤鎴�
+        //除了拦截login.html 其他html都拦截
         StringBuffer url = request.getRequestURL();
         //System.out.println(url);
         String path = url.toString();
-        // 鍙嫤鎴繖浜涚被鍨嬭姹�
+        // 只拦截这些类型请求
         if (path.endsWith(".do") || path.endsWith(".html")) {
-            // 鐧诲綍锛屽浘鐗囦笉鎷︽埅
+        	// 登录，图片不拦截
             if (path.endsWith("toLogin.html")
                     || path.endsWith("toRegister.html")
                     || path.endsWith("register.do")
@@ -75,7 +75,7 @@ public class AuthorizationFilter implements Filter {
             }
 
         } else {
-            //鍏朵粬闈欐�佽祫婧愰兘涓嶆嫤鎴�
+        	 //其他静态资源都不拦截
             chain.doFilter(request, response);
         }
     }
@@ -112,7 +112,7 @@ public class AuthorizationFilter implements Filter {
     }
 
     /**
-     * 杩斿洖JOSN鏁版嵁鏍煎紡
+     * 返回JOSN数据格式
      *
      * @param response
      * @param object

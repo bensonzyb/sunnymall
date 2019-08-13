@@ -55,7 +55,7 @@ public class UserController {
         if (user != null) {
             //登录成功 重定向到首页
             request.getSession().setAttribute("user", user);
-            response.sendRedirect("/mall/index.html");
+            response.sendRedirect("/sunnymall/index.html");
         } else {
             throw new LoginException("登录失败！ 用户名或者密码错误");
         }
@@ -82,7 +82,7 @@ public class UserController {
         user.setAddr(addr);
         userService.create(user);
         // 注册完成后重定向到登录页面
-        response.sendRedirect("/mall/user/toLogin.html");
+        response.sendRedirect("/sunnymall/user/toLogin.html");
     }
 
     /**
@@ -91,7 +91,7 @@ public class UserController {
     @RequestMapping("/logout.do")
     public void logout(HttpServletRequest request, HttpServletResponse response) throws IOException {
         request.getSession().removeAttribute("user");
-        response.sendRedirect("/mall/index.html");
+        response.sendRedirect("/sunnymall/index.html");
     }
 
     /**

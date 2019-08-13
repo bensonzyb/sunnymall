@@ -16,7 +16,7 @@ public interface ShopCartService {
      * 加购物车
      * @param
      */
-    void addCart(int productId, HttpServletRequest request) throws Exception;
+    void addCart(int productId, int quantity,HttpServletRequest request) throws Exception;
 
     /**
      * 移除

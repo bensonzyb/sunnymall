@@ -159,7 +159,7 @@ public class OrderServiceImpl implements OrderService {
         order.setTotal(total);
         orderDao.save(order);
         //重定向到订单列表页面
-        response.sendRedirect("/mall/order/toList.html");
+        response.sendRedirect("/sunnymall/order/toList.html");
     }
 
     /**

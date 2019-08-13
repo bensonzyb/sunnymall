@@ -34,10 +34,10 @@ public class ShopCartServiceImpl implements ShopCartService {
      * @param request
      */
     @Override
-    public void addCart(int productId, HttpServletRequest request) throws Exception {
+    public void addCart(int productId, int quantity,HttpServletRequest request) throws Exception {
         User loginUser = (User) request.getSession().getAttribute("user");
         if (loginUser == null)
-            throw new Exception("未登录！请重新登录");
+            throw new Exception("Not logged in,please log in again!");
         List<Integer> productIds = (List<Integer>) request.getSession().getAttribute(NAME_PREFIX + loginUser.getId());
         if (productIds == null) {
             productIds = new ArrayList<>();

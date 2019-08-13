@@ -151,8 +151,8 @@ public class ProductController {
      */
     @ResponseBody
     @RequestMapping("/addCart.do")
-    public ResultBean<Boolean> addToCart(int productId, HttpServletRequest request) throws Exception {
-        shopCartService.addCart(productId, request);
+    public ResultBean<Boolean> addToCart(int productId,int quantity, HttpServletRequest request) throws Exception {
+        shopCartService.addCart(productId,quantity, request);
         return new ResultBean<>(true);
     }
 
