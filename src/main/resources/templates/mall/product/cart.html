@@ -19,7 +19,7 @@
     <!--购物车-->
     <div class="layui-row">
         <div class="layui-col-md12"><h1 class="site-h1"><i class="fa fa-gift" style="color: #FF5722;"></i>
-            &nbsp;我的购物车</h1></div>
+            &nbsp;My Selected</h1></div>
     </div>
     <div class="layui-row" style="text-align: center;">
         <div class="layui-row" id="product_cart" style="overflow-x: auto;">
@@ -88,7 +88,7 @@
                 if (data.state == 0) {
                     var table = $("#cart");
                     if (data.data.length <= 0) {
-                        layer.msg("您的购物车中暂无商品，快去购物吧！");
+                        layer.msg("You haven't selected yet. Go ahead and choose your favorite products.");
                         $("#order_form").fadeOut();
                         return;
                     }
@@ -105,16 +105,16 @@
 
             $(items).each(function (index, item) {
                 var tr = $("<tr style='max-height: 200px;'></tr>");
-                tr.append($("<td style=''><img class='img_responsive' src='" + item.product.image + "'/></td>"));
-                tr.append($("<td style='text-align: left;width: 180px;'>" + item.product.title + "</td>"));
-                tr.append($("<td>单价：" + item.product.shopPrice + "</td>"));
-                tr.append($("<td>数量：" + item.count + "</td>"));
-                tr.append($("<td>总价：￥" + item.subTotal + "</td>"));
+                tr.append($("<td style=''><img style='margin-left:30px;' class='img_responsive' src='" + item.product.image + "'/></td>"));
+                tr.append($("<td style='text-align: left;width: 320px;'>" + item.product.title + "</td>"));
+                //tr.append($("<td>单价：" + item.product.shopPrice + "</td>"));
+                tr.append($("<td>Quantity：" + item.count + "</td>"));
+                //tr.append($("<td>总价：￥" + item.subTotal + "</td>"));
                 tr.append($("<td><button onclick='remove(this," + item.product.id + "," + item.subTotal + ")' class='layui-btn layui-btn-radius layui-btn-danger'>删除</button></td>"));
                 table.append(tr);
                 total += item.subTotal;
             });
-            $("#total").html("总价：￥" + total);
+           // $("#total").html("总价：￥" + total);
         }
 
         //移除购物车

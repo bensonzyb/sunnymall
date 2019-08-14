@@ -68,6 +68,8 @@ public class AuthorizationFilter implements Filter {
                     || path.endsWith("classification/list.do")
                     || path.endsWith("aboutus.html")
                     || path.endsWith("toAboutus.html")
+                    || path.endsWith("systemNotes.html")
+                    || path.endsWith("toSystemNotes.html")
                     || path.indexOf("product") != -1) {
                 chain.doFilter(request, response);
             } else {

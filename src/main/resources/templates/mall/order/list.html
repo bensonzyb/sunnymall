@@ -31,7 +31,7 @@
     <!--订单列表-->
     <div class="layui-row">
         <div class="layui-col-md12"><h1 class="site-h1"><i class="fa fa-gift" style="color: #FF5722;"></i>
-            &nbsp;我的订单</h1></div>
+            &nbsp;I submitted</h1></div>
     </div>
     <div class="layui-row">
         <div class="layui-row" style="overflow: auto;">
@@ -40,13 +40,11 @@
                     <thead>
                     <tr>
                         <th>ID</th>
-                        <th>订单时间</th>
-                        <th>收货人</th>
-                        <th>电话</th>
-                        <th>地址</th>
-                        <th>总价</th>
-                        <th>状态</th>
-                        <th>操作</th>
+                        <th>CreateTime</th>
+                        <th>Email</th>
+                        <th>Address</th>
+                        <th>Message</th>
+                        <th>Operation</th>
                     </tr>
                     </thead>
                     <tbody id="list">
@@ -76,14 +74,29 @@
         }
         // 将数据渲染进页面
         function appendToPage(items, tbody) {
+            var itemid=1;
             $(items).each(function (index, item) {
                 var tr = $("<tr></tr>");
-                tr.append($("<td>" + item.id + "</td>"));
+                tr.append($("<td>" + itemid + "</td>"));
                 tr.append($("<td width='200'>" + item.orderTime + "</td>"));
-                tr.append($("<td width='80'>" + item.name + "</td>"));
-                tr.append($("<td width='100'>" + item.phone + "</td>"));
-                tr.append($("<td width='100'>" + item.addr + "</td>"));
-                tr.append($("<td width='80'>" + item.total + "</td>"));
+                if(item.email==null || item.email==undefined){
+                   tr.append($("<td width='200'></td>"));
+                }else{
+                   tr.append($("<td width='200'>" + item.email + "</td>"));
+                }
+
+                if(item.addr==null || item.addr==undefined){
+                  tr.append($("<td width='200'</td>"));
+                }else{
+                  tr.append($("<td width='200'>" + item.addr + "</td>"));
+                }
+                if(item.message==null || item.message==undefined){
+                    tr.append($("<td width='200'></td>"));
+                }else{
+                    tr.append($("<td width='400'>" + item.message + "</td>"));
+                }
+                
+                /*tr.append($("<td width='80'>" + item.total + "</td>"));
                 var state = item.state;
                 var status;//1:未付款 2:等待发货 3:等待收货 4:订单完成
                 switch (state) {
@@ -104,17 +117,18 @@
                         break;
                 }
 
-                tr.append($("<td width='100'>" + status + "</td>"));
+                tr.append($("<td width='100'>" + status + "</td>"));*/
 
-                var operter = $("<td ><button onclick='getDetail(" + item.id + ")' class='layui-btn layui-btn-radius layui-btn-primary'>查看详情</button></td>");
-                if (state == 3) {
+                var operter = $("<td ><button onclick='getDetail(" + item.id + ")' class='layui-btn layui-btn-radius layui-btn-primary'>Details</button></td>");
+                /*if (state == 3) {
                     operter.append($("<button onclick='recieve(" + item.id + ")' class='layui-btn layui-btn-radius layui-btn-danger'>确认收货</button>"));
                 }
                 if (state == 1) {
                     operter.append($("<button onclick='pay(" + item.id + ")' class='layui-btn layui-btn-radius layui-btn-green'>付款</button>"));
-                }
+                }*/
                 tr.append(operter);
                 tbody.append(tr);
+                itemid++;
 
             });
         }
@@ -124,15 +138,15 @@
             $.get("getDetail.do?orderId=" + id, function (data) {
                 if (data.state == 0) {
                     var div = $("<div></div>");
-                    var table = $("<table class='layui-table' style='overflow: auto;min-width: 650px' lay-skin='line' ></table>");
+                    var table = $("<table class='layui-table' style='overflow: auto;min-width: 300px' lay-skin='line' ></table>");
                     var tbody = $("<tbody></tbody>");
                     $(data.data).each(function (index, item) {
-                        var tr = $("<tr style='max-height: 200px;'></tr>");
-                        tr.append($("<td ><img class='img_responsive' src='" + item.product.image + "'/></td>"));
-                        tr.append($("<td style='text-align: left;width: 200px;'><a style='color: #01AAED;text-decoration: underline;' href='/sunnymall/product/get.html?id="+item.productId+"'>" + item.product.title + "</a></td>"));
-                        tr.append($("<td>单价：" + item.product.shopPrice + "</td>"));
-                        tr.append($("<td>数量：" + item.count + "</td>"));
-                        tr.append($("<td>总价：￥" + item.subTotal + "</td>"));
+                        var tr = $("<tr style='max-height: 100px;'></tr>");    
+                        tr.append($("<td><img style='margin-left: 100px;' class='img_responsive' src='" + item.product.image + "'/></td>"));
+                        tr.append($("<td style='text-align: left;width: 500px;'><a style='color: #01AAED;text-decoration: underline;' href='/sunnymall/product/get.html?id="+item.productId+"'>" + item.product.title + "</a></td>"));
+                        //tr.append($("<td>单价：" + item.product.shopPrice + "</td>"));
+                        tr.append($("<td>Quantity：" + item.count + "</td>"));
+                        //tr.append($("<td>总价：￥" + item.subTotal + "</td>"));
                         tbody.append(tr);
                     });
                     table.append(tbody);

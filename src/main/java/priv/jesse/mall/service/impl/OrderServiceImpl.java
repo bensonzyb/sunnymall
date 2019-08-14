@@ -138,7 +138,7 @@ public class OrderServiceImpl implements OrderService {
     public void submit(String name, String phone, String addr,String email, String message, HttpServletRequest request, HttpServletResponse response) throws Exception {
         Object user = request.getSession().getAttribute("user");
         if (user == null)
-            throw new LoginException("Not logged in,please log in again!");
+            throw new LoginException("Not signed in,Please signed in again!");
         User loginUser = (User) user;
         Order order = new Order();
         order.setName(name);

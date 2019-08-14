@@ -91,7 +91,7 @@
                     <hr class="layui-bg-red" />
                     <div class="quantity-class">
                         <span class="property-size">Quantity</span>
-                        <input type="text" id="quantity" value="1"/>
+                        <input type="text" id="quantity" value="1" style="width:60px"/>
                     </div>
                     <hr class="layui-bg-red" /> 
                     <p ><button onclick="addCart()" class="layui-btn layui-btn-lg layui-btn-radius layui-btn-danger">SELECT</button></p>
@@ -100,7 +100,7 @@
         </div>
         <div class="layui-row" style="margin-top: 50px;text-align: center;">
             <fieldset class="layui-elem-field">
-                <legend style="font-weight: 700"><i class="fa fa-heart" style="color: #FF5722;"></i>商品描述<i class="fa fa-heart" style="color: #FF5722;"></i></legend>
+                <legend style="font-weight: 700"><i class="fa fa-heart" style="color: #FF5722;"></i>Product Details Description<i class="fa fa-heart" style="color: #FF5722;"></i></legend>
                 <div class="layui-field-box desc">
                     <img class="img_responsive_desc" th:src="${product.image}" />
                     <hr class="layui-bg-green" />
@@ -127,7 +127,7 @@
             
             $.get("addCart.do?productId="+productId+"&quantity="+quantity,function (data) {
                 if (data.state==0){
-                    layer.msg("Select success!");
+                    layer.msg("Select successfully!");
                 }else {
                     layer.msg(data.message);
                 }

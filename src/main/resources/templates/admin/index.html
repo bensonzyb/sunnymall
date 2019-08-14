@@ -252,6 +252,13 @@
                                                                    关于我们
                         </a>
                     </li>
+                    
+                    <li id="system_2">
+                        <a href="javascript:changePage('systemnotes');">
+                            <i class="fa fa-list"></i>
+                                                                       系统操作简介
+                        </a>
+                    </li>
                 </ul>
             </li>
             
@@ -414,7 +421,12 @@
             $("#system_1").addClass("active");
             $("#mainFrame").attr("src", "aboutus/toList.html?type=1");
             return;
-        } else {
+        } else if ('systemnotes' ==page ) {
+            $("#system").addClass("active").find("a").eq(0).append($('<span class="selected"></span>'));
+            $("#system_1").addClass("active");
+            $("#mainFrame").attr("src", "systemnotes/toList.html?type=1");
+            return;
+        }else {
             $("#" + page).addClass("active").find("a").eq(0).append($('<span class="selected"></span>'));
         }
         $("#mainFrame").attr("src", page + "/toList.html");

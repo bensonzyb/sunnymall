@@ -57,7 +57,7 @@ public class UserController {
             request.getSession().setAttribute("user", user);
             response.sendRedirect("/sunnymall/index.html");
         } else {
-            throw new LoginException("登录失败！ 用户名或者密码错误");
+            throw new LoginException("Logon failed! Username or password error.");
         }
 
     }

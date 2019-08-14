@@ -39,7 +39,7 @@ public class ShopCartServiceImpl implements ShopCartService {
     public void addCart(int productId, int quantity,HttpServletRequest request) throws Exception {
         User loginUser = (User) request.getSession().getAttribute("user");
         if (loginUser == null)
-            throw new Exception("Not logged in,please log in again!");
+            throw new Exception("Not signed in,Please signed in again!");
         List<Integer> productIds = (List<Integer>) request.getSession().getAttribute(NAME_PREFIX + loginUser.getId());
         //数量session
         Map<Integer, Integer> mapQuantity=new HashMap<Integer,Integer>();
@@ -70,7 +70,7 @@ public class ShopCartServiceImpl implements ShopCartService {
     public void remove(int productId, int quantity,HttpServletRequest request) throws Exception {
         User loginUser = (User) request.getSession().getAttribute("user");
         if (loginUser == null)
-            throw new Exception("Not logged in,please log in again!");
+            throw new Exception("Not signed in,Please signed in again!");
         List<Integer> productIds = (List<Integer>) request.getSession().getAttribute(NAME_PREFIX + loginUser.getId());
         Iterator<Integer> iterator = productIds.iterator();
         while (iterator.hasNext()) {
@@ -102,7 +102,7 @@ public class ShopCartServiceImpl implements ShopCartService {
     public List<OrderItem> listCart(HttpServletRequest request) throws Exception {
         User loginUser = (User) request.getSession().getAttribute("user");
         if (loginUser == null)
-            throw new Exception("Not logged in,please log in again!");
+            throw new Exception("Not signed in,Please signed in again!");
         List<Integer> productIds = (List<Integer>) request.getSession().getAttribute(NAME_PREFIX + loginUser.getId());
         // key: productId value:OrderItem
         Map<Integer, OrderItem> productMap = new HashMap<>();

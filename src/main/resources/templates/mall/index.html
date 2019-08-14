@@ -19,7 +19,7 @@
 <div class="layui-container" id="content">
     <!--热门商品-->
     <div class="layui-row">
-        <div class="layui-col-md12"><h1 class="site-h1"><i class="fa fa-heart" style="color: #FF5722;"></i> &nbsp;热门商品
+        <div class="layui-col-md12"><h1 class="site-h1"><i class="fa fa-heart" style="color: #FF5722;"></i> &nbsp;Hot Product
         </h1></div>
     </div>
     <div class="layui-row" id="product_hot">
@@ -28,13 +28,13 @@
     <!--最新商品-->
     <div class="layui-row">
         <div class="layui-col-md12"><h1 class="site-h1"><i class="fa fa-calendar" style="color: #FFB800;"></i>
-            &nbsp;最新商品</h1></div>
+            &nbsp;New Product</h1></div>
     </div>
     <div class="layui-row" style="text-align: center;">
         <div class="layui-row" id="product_new">
 
         </div>
-        <a class="more" href="javascript: more();">点击加载更多</a>
+        <a class="more" href="javascript: more();">Click Load More...</a>
     </div>
     <script>
         //            <![CDATA[
@@ -52,7 +52,7 @@
                     var div = $("#product_hot");
                     appendToPage(div, data.data);
                 } else {
-                    layer.msg("请求失败！")
+                    layer.msg("request fail！")
                 }
             });
         }
@@ -64,11 +64,11 @@
                     pageNo++;
                     var div = $("#product_new");
                     if ((!data.data || data.data.length <= 0) && pageNo > 0) {
-                        layer.msg("没有更多了");
+                        layer.msg("no more...");
                     }
                     appendToPage(div, data.data);
                 } else {
-                    layer.msg("请求失败！")
+                    layer.msg("request fail！")
                 }
             });
 

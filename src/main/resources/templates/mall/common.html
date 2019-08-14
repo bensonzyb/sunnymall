@@ -19,13 +19,38 @@
         //JavaScript代码区域
         //        ]]>
     </script>
+   
+     <script>
+	 //  <![CDATA[
+		    function selection(){
+		       var user=$("#user").val();
+		       if(user==null || user=="" || user==undefined){
+		               layer.msg("Not signed in,Please signed in again!");
+		       }
+		    }
+
+	    //]]>
+   </script>
+    
+    
     <div class="layui-main">
         <a class="logo" href="/sunnymall/index.html">
             <img th:src="@{/image/logo.png}"/>
         </a>
+        <a class="product-index" href="/sunnymall/index.html">
+             <span>PRODUCT</span>
+        </a>
         <a class="about_us"  href="/sunnymall/aboutus.html">
            <span>ABOUT US</span>
         </a>
+        
+        <a class="system-notes"  href="/sunnymall/systemNotes.html">
+           <span>SYSTEM NOTES</span>
+        </a>
+        
+        
+        
+        
         
         <!-- 头部区域（可配合layui已有的水平导航） -->
         <!--<ul class="layui-nav layui-layout-left">-->
@@ -54,6 +79,16 @@
                     //                    ]]>
                 </script>
             </li>
+            
+             <li class="layui-nav-item" style="color:#393D49;">
+                <a href="javascript:;" onclick="selection()" >Your Selection</a>
+                <dl class="layui-nav-child" id="category">
+                    <dd th:if="${session.user != null}"><a href="/sunnymall/order/toList.html"><i class="fa fa-list"></i>Submitted</a></dd>
+                    <dd th:if="${session.user != null}"><a href="/sunnymall/product/toCart.html"><i class="fa fa-shopping-cart"></i>Selected</a></dd>
+                </dl>
+            </li>
+            
+            
             <li class="layui-nav-item">
                 <a href="javascript:;">
                     <i class="fa fa-user-circle"></i>&nbsp;
@@ -62,16 +97,16 @@
                 </a>
                 <dl class="layui-nav-child">
                     <dd th:if="${session.user != null}"><a href="/sunnymall/user/logout.do"><i class="fa fa-sign-out"></i>Log out</a></dd>
-                    <dd th:if="${session.user != null}"><a href="/sunnymall/order/toList.html"><i class="fa fa-list"></i>Submitted</a></dd>
-                    <dd th:if="${session.user != null}"><a href="/sunnymall/product/toCart.html"><i class="fa fa-shopping-cart"></i>Selected</a></dd>
                     <dd th:if="${session.user == null}"><a href="/sunnymall/user/toLogin.html"><i class="fa fa-sign-in"></i>Sign in</a></dd>
                     <dd th:if="${session.user == null}"><a href="/sunnymall/user/toRegister.html"><i class="fa fa-user-plus"></i>Register</a></dd>
                 </dl>
+                <input type="hidden" id="user" th:value="${session.user}" />
             </li>
             <!--<li class="layui-nav-item"><a href="">退了</a></li>-->
         </ul>
     </div>
 </div>
+
 
 <!--底部模块-->
 <div class="footer footer-index" th:fragment="foot">
@@ -79,6 +114,5 @@
     <!-- 底部固定区域 -->
     © Sunny mall
 </div>
-
 </body>
 </html>

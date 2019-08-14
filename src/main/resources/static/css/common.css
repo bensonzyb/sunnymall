@@ -1626,11 +1626,24 @@ body {
     height: auto;
 }
 
-.about_us {
+.product-index{
    position: absolute;
    left: 180px;
    top: 25px;
    color:#fff;
 }
-    
+
+.about_us {
+   position: absolute;
+   left: 280px;
+   top: 25px;
+   color:#fff;
+}
+
+.system-notes{
+   position: absolute;
+   left: 380px;
+   top: 25px;
+   color:#fff;
+}    
 

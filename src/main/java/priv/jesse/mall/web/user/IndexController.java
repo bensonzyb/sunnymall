@@ -5,7 +5,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import priv.jesse.mall.entity.Aboutus;
+import priv.jesse.mall.entity.SystemNotes;
 import priv.jesse.mall.service.AboutusService;
+import priv.jesse.mall.service.SystemNotesService;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -17,6 +19,9 @@ public class IndexController {
 	
 	@Autowired
     private AboutusService aboutusService;
+	
+	@Autowired
+    private SystemNotesService systemNotesService;
     /**
      * 打开首页
      * @return
@@ -40,10 +45,21 @@ public class IndexController {
      * @return  
      */
     @RequestMapping("/aboutus.html")
-    public String toAboutus(Map<String, Object> map) {
+    public String aboutus(Map<String, Object> map) {
     	Aboutus aboutus = aboutusService.selectOne();
         map.put("about", aboutus);
         return "mall/aboutus";
+    }
+    
+    /**
+     * 系统操作简介
+     * @return  
+     */
+    @RequestMapping("/systemNotes.html")
+    public String systemNotes(Map<String, Object> map) {
+    	SystemNotes systemnotes = systemNotesService.selectOne();
+        map.put("systemnotes", systemnotes);
+        return "mall/systemnotes";
     }
 
 }
