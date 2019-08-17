@@ -37,16 +37,16 @@
         <a class="logo" href="/sunnymall/index.html">
             <img th:src="@{/image/logo.png}"/>
         </a>
-        <a class="product-index" href="/sunnymall/index.html">
-             <span>PRODUCT</span>
+         <a class="product-index short" href="/sunnymall/index.html">
+             <span>Product</span>
         </a>
-        <a class="about_us"  href="/sunnymall/aboutus.html">
-           <span>ABOUT US</span>
+        <a class="about_us short"  href="/sunnymall/aboutus.html">
+           <span>About Us</span>
         </a>
         
-        <a class="system-notes"  href="/sunnymall/systemNotes.html">
-           <span>SYSTEM NOTES</span>
-        </a>
+        <a class="system-notes short"  href="/sunnymall/systemNotes.html">
+           <span>System Notes</span>
+        </a> 
         
         
         
@@ -92,12 +92,12 @@
             <li class="layui-nav-item">
                 <a href="javascript:;">
                     <i class="fa fa-user-circle"></i>&nbsp;
-                    <span th:if="${session.user == null}">Sign in</span>
-                    <span th:if="${session.user != null}" th:text="'Welcome!&nbsp;' + ${session.user.username}">Sign in</span>
+                    <span th:if="${session.user == null}">Sign In</span>
+                    <span th:if="${session.user != null}" th:text="'Welcome!&nbsp;' + ${session.user.username}">Sign In</span>
                 </a>
                 <dl class="layui-nav-child">
-                    <dd th:if="${session.user != null}"><a href="/sunnymall/user/logout.do"><i class="fa fa-sign-out"></i>Log out</a></dd>
-                    <dd th:if="${session.user == null}"><a href="/sunnymall/user/toLogin.html"><i class="fa fa-sign-in"></i>Sign in</a></dd>
+                    <dd th:if="${session.user != null}"><a href="/sunnymall/user/logout.do"><i class="fa fa-sign-out"></i>Log Out</a></dd>
+                    <dd th:if="${session.user == null}"><a href="/sunnymall/user/toLogin.html"><i class="fa fa-sign-in"></i>Sign In</a></dd>
                     <dd th:if="${session.user == null}"><a href="/sunnymall/user/toRegister.html"><i class="fa fa-user-plus"></i>Register</a></dd>
                 </dl>
                 <input type="hidden" id="user" th:value="${session.user}" />

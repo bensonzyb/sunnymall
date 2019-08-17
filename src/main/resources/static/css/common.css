@@ -43,9 +43,8 @@ h1, h2, h3 {
     top: 0;
     left: 0;
 }
-
+/**position: absolute;**/
 .logo {
-    position: absolute;
     left: 0;
     top: 5px;
 }
@@ -1646,4 +1645,28 @@ body {
    top: 25px;
    color:#fff;
 }    
+
+
+/***手机端访问的时候****/
+@media screen and (min-width:300px) and (max-width:750px){
+   .layui-main .short{
+       display:none;
+    }
+    
+    .layui-main .logo img {
+         height: 30px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
