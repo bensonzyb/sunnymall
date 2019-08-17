@@ -1,24 +1,36 @@
 package priv.jesse.mall.service.impl;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import cn.com.yoyosys.tools.core.util.StrUtil;
+import cn.com.yoyosys.tools.system.HostInfo;
+import cn.com.yoyosys.tools.system.SystemUtil;
 import priv.jesse.mall.dao.OrderDao;
 import priv.jesse.mall.dao.OrderItemDao;
 import priv.jesse.mall.dao.ProductDao;
 import priv.jesse.mall.entity.Order;
 import priv.jesse.mall.entity.OrderItem;
 import priv.jesse.mall.entity.Product;
+import priv.jesse.mall.entity.SmsRecord;
 import priv.jesse.mall.entity.User;
 import priv.jesse.mall.service.OrderService;
 import priv.jesse.mall.service.ShopCartService;
+import priv.jesse.mall.service.SmsRecordService;
 import priv.jesse.mall.service.exception.LoginException;
+import priv.jesse.mall.utils.PropertySet;
+import priv.jesse.mall.utils.SendSmsTool;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import static org.mockito.Matchers.intThat;
+
 import java.util.Date;
 import java.util.List;
 
@@ -32,6 +44,9 @@ public class OrderServiceImpl implements OrderService {
     private ProductDao productDao;
     @Autowired
     private ShopCartService shopCartService;
+    
+    @Autowired
+    private SmsRecordService smsRecordService;
 
 
     @Override
@@ -160,6 +175,28 @@ public class OrderServiceImpl implements OrderService {
         }
         order.setTotal(total);
         orderDao.save(order);
+        //发送短信给卖家，有客户提交了产品咨询
+        String sendContent=addr;
+        if(StringUtils.isNotEmpty(message)) {
+        	sendContent=sendContent+","+message;
+        }
+    	int num=0;
+    	SmsRecord smsRecord=new  SmsRecord();
+    	smsRecord.setSendDate(new Date());
+    	//获取访问系统的iP个机器名称
+    	HostInfo hostinfo=SystemUtil.getHostInfo();
+    	if(hostinfo!=null && StrUtil.isNotEmpty(hostinfo.getAddress())  && StrUtil.isNotEmpty(hostinfo.getName())) {
+    		smsRecord.setHostAddress(hostinfo.getAddress());
+    		smsRecord.setHostName(hostinfo.getName());
+    	    num =smsRecordService.findBySmsRecord(smsRecord);
+    	}
+    	smsRecord.setSendContent(sendContent);
+    	smsRecord.setPhone(PropertySet.notify_phone);
+    	smsRecord.setSendTime(new Date());
+    	smsRecordService.create(smsRecord);
+    	if(num<=2) {//同一个IP当天超过2次发送，不在发送
+    		Boolean flag=SendSmsTool.sendsms(sendContent, email,PropertySet.notify_phone);
+    	}
         //重定向到订单列表页面
         response.sendRedirect("/sunnymall/order/toList.html");
     }
