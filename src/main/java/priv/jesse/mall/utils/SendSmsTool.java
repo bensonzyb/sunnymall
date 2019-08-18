@@ -22,7 +22,7 @@ public class SendSmsTool {
 	/**
 	 * @param args
 	 */
-	public static Boolean sendsms(String content1,String content2,String phone) {
+	public static Boolean sendsms(String content1,String content2,String  threeContent ,String phone) {
 		HashMap<String, Object> result = null;
 
 		//初始化SDK
