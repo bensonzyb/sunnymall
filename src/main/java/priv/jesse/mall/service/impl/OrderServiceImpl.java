@@ -198,7 +198,7 @@ public class OrderServiceImpl implements OrderService {
     		Boolean flag=SendSmsTool.sendsms(sendContent, email,PropertySet.notify_phone);
     	}
         //重定向到订单列表页面
-        response.sendRedirect("/sunnymall/order/toList.html");
+        response.sendRedirect("/order/toList.html");///sunnymall
     }
 
     /**

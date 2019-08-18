@@ -34,17 +34,17 @@
     
     
     <div class="layui-main">
-        <a class="logo" href="/sunnymall/index.html">
+        <a class="logo" href="/index.html">
             <img th:src="@{/image/logo.png}"/>
         </a>
-         <a class="product-index short" href="/sunnymall/index.html">
+         <a class="product-index short" href="/index.html">
              <span>Product</span>
         </a>
-        <a class="about_us short"  href="/sunnymall/aboutus.html">
+        <a class="about_us short"  href="/aboutus.html">
            <span>About Us</span>
         </a>
         
-        <a class="system-notes short"  href="/sunnymall/systemNotes.html">
+        <a class="system-notes short"  href="/systemNotes.html">
            <span>System Notes</span>
         </a> 
         
@@ -65,11 +65,11 @@
                 <script>
                     //                    <![CDATA[
                     //加载分类
-                    $.get("/sunnymall/admin/classification/list.do?type=1&pageindex=-1", function (data) {
+                    $.get("/admin/classification/list.do?type=1&pageindex=-1", function (data) {
                         if (data.state == 0) {
                             var list = $("#category");
                             $(data.data).each(function (index, item) {
-                                var cat = $("<dd><a href='/sunnymall/product/category.html?cid="+item.id+"'>" + item.cname + "</a></dd>");
+                                var cat = $("<dd><a href='/product/category.html?cid="+item.id+"'>" + item.cname + "</a></dd>");
                                 list.append(cat);
                             })
                         } else {
@@ -83,8 +83,8 @@
              <li class="layui-nav-item" style="color:#393D49;">
                 <a href="javascript:;" onclick="selection()" >Your Selection</a>
                 <dl class="layui-nav-child" id="category">
-                    <dd th:if="${session.user != null}"><a href="/sunnymall/order/toList.html"><i class="fa fa-list"></i>Submitted</a></dd>
-                    <dd th:if="${session.user != null}"><a href="/sunnymall/product/toCart.html"><i class="fa fa-shopping-cart"></i>Selected</a></dd>
+                    <dd th:if="${session.user != null}"><a href="/order/toList.html"><i class="fa fa-list"></i>Submitted</a></dd>
+                    <dd th:if="${session.user != null}"><a href="/product/toCart.html"><i class="fa fa-shopping-cart"></i>Selected</a></dd>
                 </dl>
             </li>
             
@@ -96,9 +96,9 @@
                     <span th:if="${session.user != null}" th:text="'Welcome!&nbsp;' + ${session.user.username}">Sign In</span>
                 </a>
                 <dl class="layui-nav-child">
-                    <dd th:if="${session.user != null}"><a href="/sunnymall/user/logout.do"><i class="fa fa-sign-out"></i>Log Out</a></dd>
-                    <dd th:if="${session.user == null}"><a href="/sunnymall/user/toLogin.html"><i class="fa fa-sign-in"></i>Sign In</a></dd>
-                    <dd th:if="${session.user == null}"><a href="/sunnymall/user/toRegister.html"><i class="fa fa-user-plus"></i>Register</a></dd>
+                    <dd th:if="${session.user != null}"><a href="/user/logout.do"><i class="fa fa-sign-out"></i>Log Out</a></dd>
+                    <dd th:if="${session.user == null}"><a href="/user/toLogin.html"><i class="fa fa-sign-in"></i>Sign In</a></dd>
+                    <dd th:if="${session.user == null}"><a href="/user/toRegister.html"><i class="fa fa-user-plus"></i>Register</a></dd>
                 </dl>
                 <input type="hidden" id="user" th:value="${session.user}" />
             </li>
@@ -112,7 +112,7 @@
 <div class="footer footer-index" th:fragment="foot">
     <hr style="color: #c2c2c2;" />
     <!-- 底部固定区域 -->
-    © Sunny mall
+    © Earth Mall
 </div>
 </body>
 </html>

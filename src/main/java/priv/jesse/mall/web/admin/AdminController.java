@@ -49,7 +49,7 @@ public class AdminController {
     @RequestMapping(method = RequestMethod.POST, value = "/login.do")
     public void login(String username, String password, HttpServletRequest request, HttpServletResponse response) throws IOException {
         AdminUser adminUser = adminUserService.checkLogin(request, username, password);
-        response.sendRedirect("/sunnymall/admin/toIndex.html");
+        response.sendRedirect("/admin/toIndex.html");///sunnymall
     }
 
     /**

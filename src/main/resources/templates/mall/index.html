@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
     <meta name="renderer" content="webkit"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>SkyMall | 商城</title>
+    <title>EarthMall</title>
     <link rel="stylesheet" th:href="@{/layui/css/layui.css}"/>
     <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet" type="text/css"/>
     <link th:href="@{/css/common.css}" rel="stylesheet" type="text/css"/>
@@ -88,14 +88,14 @@
                 conetDiv.append(imgdiv);
                 //var priceDiv = $("<div style='text-align: left;'>商城价：<span class='price1'>" + item.shopPrice + "</span></div>");
                 //conetDiv.append(priceDiv);
-                conetDiv.append($("<div class='product_title'><a href='/sunnymall/product/get.html?id="+item.id+"'>" + item.title + "</a></div>"));
+                conetDiv.append($("<div class='product_title'><a href='/product/get.html?id="+item.id+"'>" + item.title + "</a></div>"));
                 div.append(productDiv);
             });
         }
         
         //跳转详情
         function toChange(id){
-              window.location.href="/sunnymall/product/get.html?id=" +id
+              window.location.href="/product/get.html?id=" +id
         }
 
         //            ]]>

@@ -52,8 +52,8 @@ public class GlobalExceptionHandler implements Serializable{
         //记录日志
         LOGGER.error(e.getMessage(), e);
         req.setAttribute("msg", e.getMessage());
-        //转发到error页面
-        req.getRequestDispatcher("/sunnymall/user/error.html").forward(req, res);
+        //转发到error页面  /sunnymall
+        req.getRequestDispatcher("/user/error.html").forward(req, res);
     }
 
     /**

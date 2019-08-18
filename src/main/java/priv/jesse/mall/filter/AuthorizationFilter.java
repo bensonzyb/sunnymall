@@ -63,7 +63,7 @@ public class AuthorizationFilter implements Filter {
                     || path.endsWith("logout.do")
                     || path.endsWith("error.html")
                     || path.endsWith("checkUsername.do")
-                    || path.indexOf("/sunnymall/admin/product/img/") != -1
+                    || path.indexOf("/admin/product/img/") != -1  ///sunnymall
                     || path.endsWith("index.html")
                     || path.endsWith("classification/list.do")
                     || path.endsWith("aboutus.html")
@@ -95,13 +95,13 @@ public class AuthorizationFilter implements Filter {
         String url = request.getRequestURL().toString();
         if (url.indexOf("admin") != -1){
             if (adminUser == null) {
-                response.sendRedirect("/sunnymall/admin/toLogin.html");
+                response.sendRedirect("/admin/toLogin.html");///sunnymall
             }else {
                 chain.doFilter(request, response);
             }
         }else {
             if (user == null) {
-                response.sendRedirect("/sunnymall/user/toLogin.html");
+                response.sendRedirect("/user/toLogin.html");///sunnymall
             }else {
                 chain.doFilter(request, response);
             }
