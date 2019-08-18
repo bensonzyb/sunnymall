@@ -4,12 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>priv.jesse</groupId>
-	<artifactId>sunnymall</artifactId>
+	<artifactId>earthmall</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
-	<name>sunnymall</name>
-	<description>shopping sunnymall project</description>
+	<name>earthmall</name>
+	<description>shopping earthmall project</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
