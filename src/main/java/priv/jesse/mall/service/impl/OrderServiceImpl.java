@@ -28,9 +28,6 @@ import priv.jesse.mall.utils.SendSmsTool;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import static org.mockito.Matchers.intThat;
-
 import java.util.Date;
 import java.util.List;
 
@@ -195,7 +192,7 @@ public class OrderServiceImpl implements OrderService {
     	smsRecord.setSendTime(new Date());
     	smsRecordService.create(smsRecord);
     	if(num<=2) {//同一个IP当天超过2次发送，不在发送
-    		Boolean flag=SendSmsTool.sendsms(sendContent, email,PropertySet.notify_phone);
+    		Boolean flag=SendSmsTool.sendsms(email,sendContent,PropertySet.notify_phone);
     	}
         //重定向到订单列表页面
         response.sendRedirect("/order/toList.html");///sunnymall
