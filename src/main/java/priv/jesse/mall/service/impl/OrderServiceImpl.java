@@ -25,6 +25,7 @@ import priv.jesse.mall.service.SmsRecordService;
 import priv.jesse.mall.service.exception.LoginException;
 import priv.jesse.mall.utils.PropertySet;
 import priv.jesse.mall.utils.SendSmsTool;
+import priv.jesse.mall.utils.SystemTool;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -146,7 +147,7 @@ public class OrderServiceImpl implements OrderService {
      * @param response
      */
     @Override
-    @Transactional
+    //@Transactional
     public void submit(String name, String phone, String addr,String email, String message, HttpServletRequest request, HttpServletResponse response) throws Exception {
         Object user = request.getSession().getAttribute("user");
         if (user == null)
@@ -183,8 +184,8 @@ public class OrderServiceImpl implements OrderService {
     	//获取访问系统的iP个机器名称
     	HostInfo hostinfo=SystemUtil.getHostInfo();
     	if(hostinfo!=null && StrUtil.isNotEmpty(hostinfo.getAddress())  && StrUtil.isNotEmpty(hostinfo.getName())) {
-    		smsRecord.setHostAddress(hostinfo.getAddress());
-    		smsRecord.setHostName(hostinfo.getName());
+    		smsRecord.setHostAddress(SystemTool.getIpAddr(request));
+    		//smsRecord.setHostName(hostinfo.getName());
     	    num =smsRecordService.findBySmsRecord(smsRecord);
     	}
     	smsRecord.setSendContent(sendContent);

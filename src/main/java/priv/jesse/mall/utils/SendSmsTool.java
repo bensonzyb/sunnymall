@@ -22,7 +22,7 @@ public class SendSmsTool {
 	/**
 	 * @param args
 	 */
-	public static Boolean sendsms(String content1,String content2,String  threeContent ,String phone) {
+	public static Boolean sendsms(String content1,String content2,String  content3 ,String phone) {
 		HashMap<String, Object> result = null;
 
 		//初始化SDK
@@ -72,7 +72,7 @@ public class SendSmsTool {
 		//*则13800000000手机号收到的短信内容是：【云通讯】您使用的是云通讯短信模板，您的验证码是6532，请于5分钟内正确输入     *
 		//*********************************************************************************************************************
 		//放入发送的信息内容和电话号码,TEMPLATEID为模板ID
-		result = restAPI.sendTemplateSMS(phone,PropertySet.TEMPLATEID ,new String[]{content1,content2});
+		result = restAPI.sendTemplateSMS(phone,PropertySet.TEMPLATEID ,new String[]{content1,content2,content3});
 		//result = restAPI.sendTemplateSMS(phone,TEMPLATEID ,new String[]{content1});
 		log.info("短信发送返回结果："+result);
 		System.out.println("SDKTestGetSubAccounts result=" + result);

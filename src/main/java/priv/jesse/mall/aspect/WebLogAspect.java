@@ -15,6 +15,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import cn.com.yoyosys.tools.core.util.StrUtil;
 import cn.com.yoyosys.tools.system.HostInfo;
 import cn.com.yoyosys.tools.system.SystemUtil;
+import priv.jesse.mall.utils.SystemTool;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -50,20 +51,19 @@ public class WebLogAspect {
         // 记录下请求内容
         LOGGER.info("**************商城客户端请求,Start API Request**************");
         //获取访问系统的iP个机器名称
-    	HostInfo hostinfo=SystemUtil.getHostInfo();
+    	//HostInfo hostinfo=SystemUtil.getHostInfo();
         LOGGER.info("客户端访问时间 : " + formatter.format(new Date()));
         LOGGER.info("URL : " + request.getRequestURI().toString());
-        LOGGER.info("IP地址 : " + hostinfo.getAddress());
-        LOGGER.info("主机名称 : " + hostinfo.getName());
-        LOGGER.info("**************商城客户端 请求,End API Request*****************");
+        LOGGER.info("IP地址 : " + SystemTool.getIpAddr(request));
+        //LOGGER.info("**************商城客户端 请求,End API Request*****************");
     
     }
 
     @AfterReturning(returning = "ret", pointcut = "webLog()")
     public void doAfterReturning(Object ret) throws Throwable {
         // 处理完请求，返回内容
-    	LOGGER.info("**************商城客户端返回:  Start API RESPONSE**************");
-        LOGGER.info("RESPONSE : " + ret);
+    	//LOGGER.info("**************商城客户端返回:  Start API RESPONSE**************");
+        //LOGGER.info("RESPONSE : " + ret);
         LOGGER.info("总共花费时间,SPEND TIME : " + (System.currentTimeMillis() - startTime.get()));
         LOGGER.info("***************商城客户端返回:  End API RESPONSE***************");
     }

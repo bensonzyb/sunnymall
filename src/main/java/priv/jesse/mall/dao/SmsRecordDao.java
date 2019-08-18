@@ -41,7 +41,6 @@ public interface SmsRecordDao extends JpaRepository<SmsRecord, Integer> {
 	 * 
 	 */
 	@Query("select id from SmsRecord  where  sendDate =:#{#smsRecord.sendDate} "
-			+ "and hostAddress=:#{#smsRecord.hostAddress} "
-			+ " and  hostName=:#{#smsRecord.hostName}")
+			+ "and hostAddress=:#{#smsRecord.hostAddress} ")
 	List<String> findBySmsRecord(@Param("smsRecord") SmsRecord smsRecord);
 }
