@@ -1654,7 +1654,8 @@ body {
     }
     
     .layui-main .logo img {
-         height: 30px;
+        height: 40px;
+        width: 60px;
     }
 }
 
