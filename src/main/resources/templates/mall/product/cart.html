@@ -34,8 +34,8 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">email：</label>
                         <div class="layui-input-block">
-                            <input type="text" name="email" required="required" lay-verify="required"
-                                   placeholder="Please input your email"
+                            <input type="text" name="email" required="required" lay-verify="email"
+                                   placeholder="Please input your email"  lay-error="Please input the correct email"
                                    autocomplete="off" class="layui-input"/>
                         </div>
                     </div>
@@ -44,7 +44,7 @@
                         <label class="layui-form-label">address：</label>
                         <div class="layui-input-block">
                             <input type="text" name="addr" required="required" lay-verify="required"
-                                   placeholder="Please input your address"
+                                   placeholder="Please input your address" lay-error="Please input your address"
                                    autocomplete="off" class="layui-input"/>
                         </div>
                     </div>
@@ -53,7 +53,7 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label">message：</label>
                         <div class="layui-input-block"> 
-                            <textarea name="message" id="message"  placeholder="leave a message" lay-verify="required"
+                            <textarea name="message" id="message"  placeholder="leave a message" 
                             class="layui-textarea" rows="3"  autocomplete="off"></textarea>
                         </div>
                     </div>
