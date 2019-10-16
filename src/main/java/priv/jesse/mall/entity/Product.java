@@ -68,6 +68,19 @@ public class Product implements Serializable {
      */
     @Column(name = "quantity")
     private Integer quantity;
+    
+    
+    /**
+     * 商品来源描述
+     */
+    @Column(name = "source")
+    private String source;
+    
+    /**
+     * 是否上线
+     */
+    @Column
+    private Integer isShow;
 
     public Classification getCategorySec() {
         return categorySec;
@@ -245,6 +258,24 @@ public class Product implements Serializable {
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
 	}
+
+	public String getSource() {
+		return source;
+	}
+
+	public void setSource(String source) {
+		this.source = source;
+	}
+
+	public Integer getIsShow() {
+		return isShow;
+	}
+
+	public void setIsShow(Integer isShow) {
+		this.isShow = isShow;
+	}
+	
+	
     
     
 }

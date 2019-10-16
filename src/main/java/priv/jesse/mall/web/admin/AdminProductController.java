@@ -84,9 +84,11 @@ public class AdminProductController {
                     Double marketPrice,
                     Double shopPrice,
                     int isHot,
+                    int isShow,
                     String desc,
                     int csid,
                     String propertyDesc,
+                    String source,
                     HttpServletRequest request,
                     HttpServletResponse response) throws Exception {
         Product product = new Product();
@@ -95,11 +97,13 @@ public class AdminProductController {
         product.setShopPrice(shopPrice);
         product.setDesc(desc);
         product.setIsHot(isHot);
+        product.setIsShow(isShow);
         product.setCsid(csid);
         product.setPdate(new Date());
         product.setPropertyDesc(propertyDesc);
         String imgUrl = FileUtil.saveFile(image);
         product.setImage(imgUrl);
+        product.setSource(source);
         int id = productService.create(product);
         if (id <= 0) {
             request.setAttribute("message", "添加失败!");
@@ -118,8 +122,10 @@ public class AdminProductController {
                        String desc,
                        int csid,
                        int isHot,
+                       int isShow,
                        String propertyDesc,
                        MultipartFile image,
+                       String source,
                        HttpServletRequest request,
                        HttpServletResponse response) throws Exception {
         Product product = productService.findById(id);
@@ -128,10 +134,12 @@ public class AdminProductController {
         product.setShopPrice(shopPrice);
         product.setDesc(desc);
         product.setIsHot(isHot);
+        product.setIsShow(isShow);
         product.setCsid(csid);
         product.setPdate(new Date());
         product.setPropertyDesc(propertyDesc);
         String imgUrl = FileUtil.saveFile(image);
+        product.setSource(source);
         if (StringUtils.isNotBlank(imgUrl)) {
             product.setImage(imgUrl);
         }
