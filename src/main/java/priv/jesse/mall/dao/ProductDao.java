@@ -44,13 +44,23 @@ public interface ProductDao extends JpaRepository<Product, Integer> {
      * @param pageable
      * @return
      */
-    List<Product> findByIsHot(int isHot,Pageable pageable);
+    @Query(value = "SELECT  * FROM product WHERE is_show=1 and is_hot=1  ORDER BY pdate ASC ",nativeQuery = true)
+    List<Product> findHotProduct();
 
     /**
      * 查询最新商品，最近上新的24个商品
      * @param pageable
      * @return
      */
-    @Query(value = "SELECT * FROM (SELECT  * FROM product ORDER BY pdate DESC limit 0,24) a /*#pageable*/",nativeQuery = true)
+    @Query(value = "SELECT * FROM (SELECT  * FROM product WHERE is_show=1  ORDER BY pdate DESC limit 0,24) a /*#pageable*/",nativeQuery = true)
     List<Product> findNew(Pageable pageable);
+    
+    /**
+     * 分页查询所有
+     *
+     * @param pageable
+     * @return
+     */
+    
+    Page<Product> findAllByOrderByPdateDesc(Pageable pageable);
 }

@@ -53,6 +53,7 @@
                         <th>商品名称</th>
                         <th>商品价格</th>
                         <th>热门商品</th>
+                        <th>是否上线</th>
                         <th>操作</th>
                     </tr>
                     </thead>
@@ -162,6 +163,10 @@
             tr.append($("<td></td>").text(data[i].title));
             tr.append($("<td></td>").text("￥" + data[i].shopPrice));
             if (1 == data[i].isHot)
+                tr.append($("<td></td>").html("<b style='color:red;'>是</b>"));
+            else
+                tr.append($("<td></td>").html("否"));
+            if (1 == data[i].isShow)
                 tr.append($("<td></td>").html("<b style='color:red;'>是</b>"));
             else
                 tr.append($("<td></td>").html("否"));

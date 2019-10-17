@@ -27,7 +27,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Page<Product> findAll(Pageable pageable) {
-        return productDao.findAll(pageable);
+        return productDao.findAllByOrderByPdateDesc(pageable);
     }
 
     /**
@@ -37,7 +37,7 @@ public class ProductServiceImpl implements ProductService {
      */
     @Override
     public List<Product> findHotProduct() {
-        return productDao.findByIsHot(1, null);
+        return productDao.findHotProduct();
     }
 
     /**
@@ -99,4 +99,6 @@ public class ProductServiceImpl implements ProductService {
     public void delById(int id) {
         productDao.delete(id);
     }
+
+	
 }
