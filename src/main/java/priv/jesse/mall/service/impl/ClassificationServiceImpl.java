@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import priv.jesse.mall.dao.ClassificationDao;
 import priv.jesse.mall.entity.Classification;
+import priv.jesse.mall.entity.ClassificationDto;
 import priv.jesse.mall.service.ClassificationService;
 
 import java.util.List;
@@ -22,7 +23,7 @@ public class ClassificationServiceImpl implements ClassificationService {
     }
 
     @Override
-    public List<Classification> findAll(int type) {
+    public List<ClassificationDto> findAll(int type) {
         return classificationDao.findByType(type);
     }
 
@@ -33,7 +34,7 @@ public class ClassificationServiceImpl implements ClassificationService {
      * @return
      */
     @Override
-    public Page<Classification> findAll(int type, Pageable pageable) {
+    public Page<ClassificationDto> findAll(int type, Pageable pageable) {
         return classificationDao.findByType(type, pageable);
     }
 

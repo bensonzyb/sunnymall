@@ -4,6 +4,7 @@ import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import priv.jesse.mall.entity.Classification;
+import priv.jesse.mall.entity.ClassificationDto;
 
 import java.util.List;
 
@@ -22,7 +23,7 @@ public interface ClassificationService {
      * @param type
      * @return
      */
-    List<Classification> findAll(int type);
+    List<ClassificationDto> findAll(int type);
 
     /**
      * 按分类查询所有
@@ -30,7 +31,7 @@ public interface ClassificationService {
      * @param pageable
      * @return
      */
-    Page<Classification> findAll(int type,Pageable pageable);
+    Page<ClassificationDto> findAll(int type,Pageable pageable);
 
     /**
      * 按条件查询

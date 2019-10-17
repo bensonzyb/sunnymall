@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import priv.jesse.mall.entity.Classification;
+import priv.jesse.mall.entity.ClassificationDto;
 import priv.jesse.mall.entity.pojo.ResultBean;
 import priv.jesse.mall.service.ClassificationService;
 
@@ -111,14 +112,15 @@ public class AdminClassificationController {
 
     @RequestMapping("/list.do")
     @ResponseBody
-    public ResultBean<List<Classification>> findAll(int type,
+    public ResultBean<List<ClassificationDto>> findAll(int type,
                                                     int pageindex, @RequestParam(value = "pageSize", defaultValue = "15") int pageSize) {
-        List<Classification> list = new ArrayList<>();
-        if (pageindex == -1)
+        List<ClassificationDto> list = new ArrayList<>();
+        if (pageindex == -1) {
             list = classificationService.findAll(type);
-        else {
+        }else {
             Pageable pageable = new PageRequest(pageindex, pageSize, null);
             list = classificationService.findAll(type, pageable).getContent();
+            
         }
         return new ResultBean<>(list);
     }

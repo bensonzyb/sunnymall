@@ -19,7 +19,7 @@ public interface ProductDao extends JpaRepository<Product, Integer> {
      */
     List<Product> findByCsid(int csid, Pageable pageable);
 
-    List<Product> findByCsidIn(List<Integer> csids,Pageable pageable);
+    List<Product> findByIsShowAndCsidIn(int isShow,List<Integer> csids,Pageable pageable);
 
     /**
      * 通过标题搜索商品

@@ -69,7 +69,7 @@ public class ProductServiceImpl implements ProductService {
         for (Classification classification : sec) {
             secIds.add(classification.getId());
         }
-        return productDao.findByCsidIn(secIds,pageable);
+        return productDao.findByIsShowAndCsidIn(1,secIds,pageable);
     }
 
     /**
